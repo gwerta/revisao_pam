@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, Pressable, Image } from 'react-native';
+import { Checkbox } from "@futurejj/react-native-checkbox";
 import googleLogo from '../assets/Google.png';
 import facebookLogo from '../assets/Facebook.png';
 
 export default function TelaLogin() {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
+    const [checked, setChecked] = useState(false);
 
     return (
         <View style={styles.container}>
@@ -27,15 +29,22 @@ export default function TelaLogin() {
                 value={senha}
                 onChangeText={setSenha}
             />
-            
+
             <View style={styles.optionsRow}>
-                <Pressable>
+
+                <View style={styles.checkboxContainer}>
+                    <Checkbox
+                        onPress={() => setChecked(!checked)}
+                        status={checked ? 'checked' : 'unchecked'}>
+                    </Checkbox>
                     <Text style={styles.linkText}>Lembrar senha</Text>
-                </Pressable>
+                
+                </View>
                 <Pressable>
-                    <Text style={styles.linkText}>Esqueci minha senha</Text>
+                    <Text style={styles.linkText2}>Esqueci minha senha</Text>
                 </Pressable>
             </View>
+
             <View style={styles.buttonsRow}>
                 <Pressable style={styles.accessButton}>
                     <Text style={styles.accessButtonText}>Acessar</Text>
@@ -45,8 +54,13 @@ export default function TelaLogin() {
                     <Text style={styles.registerButtonText}>Cadastrar</Text>
                 </Pressable>
             </View>
-
-            <Text style={styles.orText}>Ou continue com</Text>
+            <View style={styles.orRowRow} >
+                <View style={styles.orRow}/>
+                    <View>
+                        <Text style={styles.orText}>Ou continue com</Text>
+                    </View>
+                        <View style={styles.orRow}/>
+            </View>
             <View style={styles.socialRow}>
                 <Pressable>
                     <Image source={googleLogo} style={styles.socialIcon} />
@@ -100,7 +114,11 @@ const styles = StyleSheet.create({
     linkText: {
         color: '#6d6d6d',
         fontWeight: '500',
-        marginTop: 10
+    },
+    linkText2: {
+        color: '#6d6d6d',
+        fontWeight: '500',
+        marginTop:10,
     },
     accessButton: {
         backgroundColor: '#56c67a',
@@ -138,13 +156,15 @@ const styles = StyleSheet.create({
     orText: {
         textAlign: 'center',
         color: '#666',
-        marginBottom: 15
+        fontWeight: '500',
+        width: 150,
     },
 
     socialRow: {
         flexDirection: 'row',
         justifyContent: 'center',
-        gap: 20
+        gap: 20,
+        marginTop: 15,
     },
 
     socialIcon: {
@@ -152,5 +172,19 @@ const styles = StyleSheet.create({
         height: 50,
         marginTop: 10,
         resizeMode: 'contain'
-    }
+    },
+    checkboxContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    orRow: {
+        flex: 1,
+        height: 1,
+        backgroundColor: '#6d6d6d',
+    },
+    orRowRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginTop: 10,
+    },
 });

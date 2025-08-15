@@ -10,7 +10,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Teladog">
         <Stack.Screen name="Teladog" component={Teladog} options={{ headerShown: false }} />
-        <Stack.Screen name="Telalogin" component={Telalogin} />
+        <Stack.Screen name="Telalogin" component={Telalogin}  options={{headerTitle: '', headerTintColor: '#10eb4b', headerShadowVisible: false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
